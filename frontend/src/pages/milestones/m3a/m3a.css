@@ -1,0 +1,8 @@
+.milestone-page {
+    padding: 2rem;
+    max-width: 800px;
+    margin: 0 auto;
+}
+.milestone-page h1 {
+    color: var(--primary-color, #333);
+}

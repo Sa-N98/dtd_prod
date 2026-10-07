@@ -1,0 +1,136 @@
+:root {
+  /* --- Color palette --- */
+  --ui-primary: #771e18;
+  --ui-primary-hover: color-mix(in srgb, var(--ui-primary) 80%, #000);
+  --ui-primary-active: color-mix(in srgb, var(--ui-primary) 65%, #000);
+  --ui-primary-light: color-mix(in srgb, var(--ui-primary) 12%, #fff);
+  --ui-primary-text: #ffffff;
+
+  --ui-secondary: #a0724e;
+  --ui-secondary-hover: color-mix(in srgb, var(--ui-secondary) 80%, #000);
+  --ui-secondary-active: color-mix(in srgb, var(--ui-secondary) 65%, #000);
+  --ui-secondary-light: color-mix(in srgb, var(--ui-secondary) 12%, #fff);
+  --ui-secondary-text: #ffffff;
+
+  --ui-success: #5a8c3a;
+  --ui-success-hover: color-mix(in srgb, var(--ui-success) 80%, #000);
+  --ui-success-active: color-mix(in srgb, var(--ui-success) 65%, #000);
+  --ui-success-light: color-mix(in srgb, var(--ui-success) 12%, #fff);
+  --ui-success-text: #ffffff;
+
+  --ui-danger: #b82020;
+  --ui-danger-hover: color-mix(in srgb, var(--ui-danger) 80%, #000);
+  --ui-danger-active: color-mix(in srgb, var(--ui-danger) 65%, #000);
+  --ui-danger-light: color-mix(in srgb, var(--ui-danger) 12%, #fff);
+  --ui-danger-text: #ffffff;
+
+  --ui-warning: #e8a020;
+  --ui-warning-hover: color-mix(in srgb, var(--ui-warning) 80%, #000);
+  --ui-warning-active: color-mix(in srgb, var(--ui-warning) 65%, #000);
+  --ui-warning-light: color-mix(in srgb, var(--ui-warning) 12%, #fff);
+  --ui-warning-text: #1a1d26;
+
+  /* --- Neutrals --- */
+  --ui-bg: #fdf6f0;
+  --ui-bg-subtle: #f7f8fb;
+  --ui-surface: #ffffff;
+  --ui-border: #e8ecf1;
+  --ui-border-focus: var(--ui-primary);
+  --ui-text: #2e1a0a;
+  --ui-text-muted: #8590a2;
+  --ui-text-inverse: #ffffff;
+  --ui-overlay: rgba(16, 20, 34, 0.4);
+
+  /* --- Sizing / Radius / Shadows --- */
+  --ui-radius-sm: 4px;
+  --ui-radius: 6px;
+  --ui-radius-lg: 10px;
+  --ui-radius-full: 9999px;
+  --ui-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ui-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+
+  --ui-font: sans-serif;
+  --ui-font-size: 0.875rem;
+  --ui-line-height: 1.5;
+  --ui-transition: 150ms ease;
+}
+
+[data-theme="dark"] {
+  --ui-primary: #4dabf7;
+  --ui-primary-hover: color-mix(in srgb, var(--ui-primary) 80%, #fff);
+  --ui-primary-active: color-mix(in srgb, var(--ui-primary) 65%, #fff);
+  --ui-primary-light: color-mix(in srgb, var(--ui-primary) 20%, #1a1d26);
+  --ui-primary-text: #ffffff;
+
+  --ui-secondary: #8590a2;
+  --ui-secondary-hover: color-mix(in srgb, var(--ui-secondary) 80%, #fff);
+  --ui-secondary-active: color-mix(in srgb, var(--ui-secondary) 65%, #fff);
+  --ui-secondary-light: color-mix(in srgb, var(--ui-secondary) 20%, #1a1d26);
+  --ui-secondary-text: #ffffff;
+
+  --ui-success: #51cf96;
+  --ui-success-hover: color-mix(in srgb, var(--ui-success) 80%, #fff);
+  --ui-success-active: color-mix(in srgb, var(--ui-success) 65%, #fff);
+  --ui-success-light: color-mix(in srgb, var(--ui-success) 20%, #1a1d26);
+  --ui-success-text: #ffffff;
+
+  --ui-danger: #ff7b8a;
+  --ui-danger-hover: color-mix(in srgb, var(--ui-danger) 80%, #fff);
+  --ui-danger-active: color-mix(in srgb, var(--ui-danger) 65%, #fff);
+  --ui-danger-light: color-mix(in srgb, var(--ui-danger) 20%, #1a1d26);
+  --ui-danger-text: #ffffff;
+
+  --ui-warning: #ffc048;
+  --ui-warning-hover: color-mix(in srgb, var(--ui-warning) 80%, #fff);
+  --ui-warning-active: color-mix(in srgb, var(--ui-warning) 65%, #fff);
+  --ui-warning-light: color-mix(in srgb, var(--ui-warning) 20%, #1a1d26);
+  --ui-warning-text: #1a1d26;
+
+  --ui-bg: #1a1d26;
+  --ui-bg-subtle: #12141a;
+  --ui-surface: #22252e;
+  --ui-border: #333842;
+  --ui-border-focus: var(--ui-primary);
+  --ui-text: #e4e6eb;
+  --ui-text-muted: #8590a2;
+  --ui-text-inverse: #1a1d26;
+  --ui-overlay: rgba(0, 0, 0, 0.6);
+
+  --ui-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ui-shadow: 0 1px 3px rgba(0, 0, 0, 0.4), 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ui-shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -4px rgba(0, 0, 0, 0.3);
+  --ui-shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.4);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+#app {
+  display: flex;
+}
+
+nav-bar {
+  width: 300px;
+  height: 100vh;
+  background-color: var(--ui-bg);
+  box-shadow: var(--ui-shadow-lg);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: hidden;
+
+}
+
+page-container {
+  flex: 1;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: var(--ui-bg);
+}

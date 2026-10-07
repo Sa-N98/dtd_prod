@@ -1,0 +1,107 @@
+<div class="milestone-page">
+
+    <!-- Header -->
+    <div class="top">
+        <div class="stats">
+            <div class="stat danger"><small>Deadline</small><b>11 Oct</b><span>2026</span></div>
+            <div class="stat"><small>Team Size</small><b>2 – 4</b><span>Minimum 2 | Maximum 4 members</span></div>
+        </div>
+    </div>
+
+    <h1>Team<br><em>Formation</em></h1>
+    <p class="lead">Build your team and get ready for the DTD-DAD project.</p>
+    <div class="desc">
+        <p>Welcome to Milestone 0 Part A. In this first step you will form your project team and get ready for the rest of the DTD-DAD project.</p>
+    </div>
+
+    <!-- Team Workspace -->
+    <section class="workspace">
+        <div class="ui-tabs">
+            <!-- Tabs -->
+            <div class="ui-tab-list pills">
+                <h5 id="tm_create_btn" class="ui-tab active" style="display:inline-block; cursor:pointer;">Form Team</h5>
+                <h5 id="tm_find_btn" class="ui-tab" style="display:inline-block; cursor:pointer;">Find Teammates</h5>
+            </div>
+
+            <!-- FORM TEAM -->
+            <div id="create_tm" class="tab-content" style="display: block;">
+                <div class="ui-panel team-panel">
+                    <div class="ui-panel-header panel-heading">
+                        <div class="panel-heading-text">
+                            <h3 class="ui-panel-title">Form your project team</h3>
+                            <p>Create a team with 2–4 available students.</p>
+                        </div>
+                        <span class="ui-tag primary">Team Formation</span>
+                    </div>
+
+                    <div class="ui-panel-body">
+                        <!-- Existing team -->
+                        <div id="existing_teams"></div>
+
+                        <!-- Create Team Button -->
+                        <button id="create_team_button" class="ui-btn lg">
+                            + Create Team
+                        </button>
+
+                        <!-- Form -->
+                        <div id="create_team_form" class="create-form" style="display: none;">
+                            <div class="ui-field lead-field">
+                                <label for="team_lead">Team Lead</label>
+                                <input type="email" id="team_lead" name="lead" class="ui-input" placeholder="name from local store" value="John Doe" readonly>
+                                <span class="ui-hint">You will automatically become the team lead.</span>
+                            </div>
+
+                            <div class="member-grid">
+                                <div class="ui-field">
+                                    <label for="member1">Member 2</label>
+                                    <input type="email" name="member1" id="member1" class="ui-input" placeholder="email of member 2" required>
+                                </div>
+                                <div class="ui-field">
+                                    <label for="member2">Member 3</label>
+                                    <input type="email" name="member2" id="member2" class="ui-input" placeholder="email of member 3 (optional)">
+                                </div>
+                                <div class="ui-field">
+                                    <label for="member3">Member 4</label>
+                                    <input type="email" name="member3" id="member3" class="ui-input" placeholder="email of member 4 (optional)">
+                                </div>
+                            </div>
+
+                            <div id="team_feedback" class="ui-hint"></div>
+
+                            <div class="form-actions">
+                                <button id="submit_team" class="ui-btn success">Submit</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIND TEAMMATES -->
+            <div id="find_tm" class="tab-content" style="display: none;">
+                <div class="ui-panel">
+                    <div class="ui-panel-header panel-heading">
+                        <div class="panel-heading-text">
+                            <h3 class="ui-panel-title">Find Teammates</h3>
+                            <p>Browse students who are currently available.</p>
+                        </div>
+                        <span class="ui-tag success">Available</span>
+                    </div>
+
+                    <div class="ui-panel-body">
+                        <div class="search-row">
+                            <div class="ui-input-icon">
+                                <span class="ui-input-icon-left">⌕</span>
+                                <input type="search" class="ui-input" placeholder="Search by email...">
+                            </div>
+                            <button class="ui-btn">Search</button>
+                        </div>
+
+                        <ol id="teammates_list" class="teammate-list">
+                            <!-- Teammates will be populated here -->
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

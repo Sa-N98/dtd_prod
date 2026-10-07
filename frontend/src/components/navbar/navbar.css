@@ -1,0 +1,139 @@
+#navbar {
+    width: 300px;
+    max-width: 100%;
+    min-height: 100vh;
+    background: var(--ui-surface);
+    border-right: 1px solid var(--ui-border);
+    padding: max(1rem, env(safe-area-inset-top, 0px)) 1rem max(1rem, env(safe-area-inset-bottom, 0px));
+    font-family: var(--ui-font);
+}
+
+.logo p {
+    margin: 0 0 .75rem;
+    border-bottom: 2px solid var(--ui-primary);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -.01em;
+    color: var(--ui-primary);
+}
+
+#nav-links {
+    display: flex;
+    flex-direction: column;
+    gap: .2rem;
+}
+
+.milestone {
+    display: flex;
+    gap: .65rem;
+    align-items: center;
+    padding: .7rem 0;
+}
+
+.milestone img {
+    flex: none;
+    width: 6rem;
+    height: 6rem;
+    object-fit: cover;
+    border-radius: var(--ui-radius);
+    background: var(--ui-primary-light);
+    border: 1px solid var(--ui-border);
+    color: transparent;
+    font-size: 0;
+    padding: 21px;
+}
+
+.milestone-info {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    flex: 1;
+    gap: .1rem;
+}
+
+.milestone-label {
+    margin: 0;
+    font-size: .62rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .06em;
+    color: var(--ui-text-muted);
+}
+
+.milestone-title {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.25;
+}
+
+.milestone-parts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .25rem;
+    padding-top: .35rem;
+}
+
+.part-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .2rem;
+    padding: .2rem .4rem;
+    text-decoration: none;
+    color: var(--ui-text);
+    background: var(--ui-bg);
+    border: 1px solid var(--ui-border);
+    border-radius: var(--ui-radius);
+    transition: background .15s, border-color .15s, color .15s;
+    font-size: .7rem;
+    flex-direction: column;
+    text-align: center;
+}
+
+.part-link span {
+    color: var(--ui-text-muted);
+}
+
+.part-link strong {
+    font-size: 1.2rem;
+    color: var(--ui-primary);
+}
+
+.part-link small {
+    color: var(--ui-text-muted);
+}
+
+.part-link:hover,
+.part-link:focus-visible {
+    background: var(--ui-primary);
+    border-color: var(--ui-primary);
+}
+
+.part-link:hover span,
+.part-link:hover strong,
+.part-link:hover small,
+.part-link:focus-visible span,
+.part-link:focus-visible strong,
+.part-link:focus-visible small {
+    color: #fff;
+}
+
+.part-link:focus-visible {
+    outline: 2px solid var(--ui-primary);
+    outline-offset: 2px;
+}
+
+#nav-links hr {
+    margin: 0;
+    border: none;
+    border-top: 1px solid var(--ui-border);
+}
+
+@media (max-width: 480px) {
+    #navbar {
+        width: 100%;
+        border-right: none;
+    }
+}
+

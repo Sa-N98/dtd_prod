@@ -1,0 +1,434 @@
+.milestone-page {
+    padding: 2rem;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+/* --- Header Styling (Copied from milestone-0-intro.html) --- */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+.chips {
+    display: flex;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+.chips .ui-badge {
+    padding: .3rem .75rem;
+}
+
+.problem-stmt-container{
+    overflow-wrap: break-word;
+}
+.stats {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+.stat {
+    flex: 0 1 auto;
+    min-width: 5.5rem;
+    text-align: center;
+    padding: .6rem .9rem;
+    background: var(--ui-surface, #fff);
+    border: 1px solid var(--ui-border, #e8ecf1);
+    border-radius: var(--ui-radius-lg, 10px);
+    box-shadow: var(--ui-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+}
+.stat small {
+    display: block;
+    font-size: .68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--ui-text-muted, #8590a2);
+}
+.stat b {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: var(--ui-primary, #771e18);
+}
+.stat.danger b {
+    color: var(--ui-danger, #b82020);
+}
+.stat span {
+    display: block;
+    font-size: .65rem;
+    color: var(--ui-text-muted, #8590a2);
+}
+
+.milestone-page h1 {
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    font-weight: 600;
+    margin: 1.25rem 0 1rem;
+    color: var(--ui-text, #2e1a0a);
+}
+.milestone-page h1 em {
+    font-style: normal;
+    color: var(--ui-primary, #771e18);
+}
+.lead {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 .75rem;
+    color: var(--ui-text, #2e1a0a);
+}
+.desc p {
+    margin: .4rem 0;
+    color: var(--ui-text-muted, #8590a2);
+    max-width: 60ch;
+    line-height: 1.6;
+}
+
+/* --- Team Card Styling --- */
+.team_card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.25rem;
+    background: var(--ui-surface, #fff);
+    border: 1px solid var(--ui-border, #e8ecf1);
+    border-radius: var(--ui-radius, 6px);
+    margin-bottom: 0.75rem;
+    transition: all 0.2s ease;
+}
+
+.team_card:hover {
+    border-color: var(--ui-primary, #771e18);
+    box-shadow: var(--ui-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+}
+
+.team_info {
+    font-weight: 600;
+    color: var(--ui-text, #2e1a0a);
+}
+
+.team_actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.view_team_btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    background: var(--ui-primary, #771e18);
+    color: white;
+    border: none;
+    border-radius: var(--ui-radius-sm, 4px);
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+}
+
+.exit_team_btn {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
+    background: transparent;
+    color: var(--ui-danger, #b82020);
+    border: 1px solid var(--ui-danger, #b82020);
+    border-radius: var(--ui-radius-sm, 4px);
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.exit_team_btn:hover {
+    background: var(--ui-danger, #b82020);
+    color: white;
+}
+
+.view_team_btn:hover {
+    opacity: 0.9;
+}
+
+/* --- Team Popup Styling --- */
+.team_popup_overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--ui-overlay, rgba(0,0,0,0.5));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(4px);
+}
+
+.team_popup_content {
+    background: var(--ui-surface, #fff);
+    padding: 2rem;
+    border-radius: var(--ui-radius-lg, 10px);
+    max-width: 500px;
+    width: 90%;
+    box-shadow: var(--ui-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1));
+    position: relative;
+    animation: popupAppear 0.3s ease-out;
+}
+
+@keyframes popupAppear {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.team_popup_content h3 {
+    margin-top: 0;
+    color: var(--ui-primary, #771e18);
+    font-size: 1.5rem;
+    border-bottom: 2px solid var(--ui-border, #e8ecf1);
+    padding-bottom: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.team_popup_content p {
+    margin-bottom: 1.25rem;
+    line-height: 1.5;
+    color: var(--ui-text, #2e1a0a);
+}
+
+.team_popup_content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2rem 0;
+}
+
+.team_popup_content li {
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--ui-border, #e8ecf1);
+    font-size: 0.95rem;
+    color: var(--ui-text, #2e1a0a);
+}
+
+.team_popup_content li:last-child {
+    border-bottom: none;
+}
+
+.close_popup {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--ui-bg-subtle, #f7f8fb);
+    color: var(--ui-text, #2e1a0a);
+    border: 1px solid var(--ui-border, #e8ecf1);
+    border-radius: var(--ui-radius, 6px);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.close_popup:hover {
+    background: var(--ui-border, #e8ecf1);
+}
+
+/* --- Tab styling for the <h5> buttons --- */
+.ui-tab-list.pills {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 4rem;
+    padding: 0;
+    list-style: none;
+}
+
+.ui-tab {
+    padding: 0.6rem 1.2rem !important;
+    margin: 0 !important;
+    border-radius: var(--ui-radius, 6px) !important;
+    border: 1px solid var(--ui-border, #e8ecf1) !important;
+    background: var(--ui-surface, #fff) !important;
+    color: var(--ui-text-muted, #8590a2) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+.ui-tab:hover {
+    background: var(--ui-bg-subtle, #f7f8fb) !important;
+    color: var(--ui-text, #2e1a0a) !important;
+}
+
+.ui-tab.active {
+    background: var(--ui-primary, #771e18) !important;
+    color: #fff !important;
+    border-color: var(--ui-primary, #771e18) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- UI Panel Styling --- */
+.ui-panel {
+    background: var(--ui-surface, #fff);
+    border: 1px solid var(--ui-border, #e8ecf1);
+    border-radius: var(--ui-radius-lg, 10px);
+    overflow: hidden;
+    box-shadow: var(--ui-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+}
+
+.ui-panel-header {
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--ui-border, #e8ecf1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: var(--ui-bg-subtle, #fcfcfc);
+}
+
+.panel-heading-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.ui-panel-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--ui-text, #2e1a0a);
+}
+
+.panel-heading-text p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--ui-text-muted, #8590a2);
+}
+
+.ui-panel-body {
+    padding: 1.5rem;
+}
+
+.ui-tag {
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border-radius: 100px;
+    letter-spacing: 0.03em;
+}
+
+.ui-tag.primary {
+    background: var(--ui-primary-light, #fdf2f2);
+    color: var(--ui-primary, #771e18);
+    border: 1px solid var(--ui-primary, #771e18);
+}
+
+.ui-tag.success {
+    background: #eefdf5;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+/* --- Form Styling --- */
+.create-form {
+    background: var(--ui-bg-subtle, #f8fafc);
+    padding: 1.5rem;
+    border-radius: var(--ui-radius, 6px);
+    border: 1px dashed var(--ui-border, #e8ecf1);
+    margin-top: 2rem;
+}
+
+.ui-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.ui-field label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--ui-text, #2e1a0a);
+}
+
+.ui-input {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid var(--ui-border, #e8ecf1);
+    border-radius: var(--ui-radius-sm, 4px);
+    font-size: 0.9rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.ui-input:focus {
+    outline: none;
+    border-color: var(--ui-primary, #771e18);
+    box-shadow: 0 0 0 3px rgba(119, 30, 24, 0.1);
+}
+
+.ui-hint {
+    font-size: 0.75rem;
+    color: var(--ui-text-muted, #8590a2);
+    margin-top: 0.25rem;
+}
+
+.member-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+/* --- Find Teammates Styling --- */
+.search-row {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+}
+
+.search-row .ui-input-icon {
+    flex: 1;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.search-row .ui-input-icon-left {
+    position: absolute;
+    left: 0.75rem;
+    color: var(--ui-text-muted, #8590a2);
+    pointer-events: none;
+    font-size: 1rem;
+    z-index: 1;
+}
+
+.search-row .ui-input {
+    width: 100%;
+    padding-left: 2rem !important;
+}
+
+.teammate-list {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.teammate-list li {
+    background: var(--ui-surface, #fff);
+    border: 1px solid var(--ui-border, #e8ecf1);
+    padding: 1rem;
+    border-radius: var(--ui-radius, 6px);
+    margin-bottom: 0.75rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: border-color 0.2s ease;
+}
+
+.teammate-list li:hover {
+    border-color: var(--ui-primary, #771e18);
+}
+
+
