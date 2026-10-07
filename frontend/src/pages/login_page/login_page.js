@@ -31,7 +31,7 @@ export function loginFunctionality(container) {
             const password = form.password.value;
 
             const response = await fetch(
-                "https://dtd-app-api-psi.vercel.app/api/login",
+                "https://dtd-prod.vercel.app/api/login",
                 {
                     method: "POST",
                     headers: {
