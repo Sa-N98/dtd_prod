@@ -172,13 +172,13 @@ function existingTeam(element) {
         const isLead = user && team.members && team.members.some(m => m.email === user.email && m.role === "Lead");
 
         popup.innerHTML = `
-            <div class="team_popup_content">
+            <div class="team_popup_content" style="background: var(--ui-surface, #fff); padding: 2rem; border-radius: var(--ui-radius-lg, 10px); max-width: 800px; width: 90%; box-shadow: var(--ui-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1)); position: relative; animation: popupAppear 0.3s ease-out; overflow: scroll; max-height: 70vh;">
                 <h3>Team ${team.team_no} Details</h3>
                 <div class="problem-stmt-container">
-                    <p><strong>Problem Statement:</strong> <span id="problem_text">${team.team_problem_stmt || "Not yet defined"}</span></p>
+                    <p><strong>Problem Statement:</strong> <span id="problem_text" style="white-space: pre-wrap;">${team.team_problem_stmt || "Not yet defined"}</span></p>
                     ${isLead ? `
                         <div class="edit-stmt-controls">
-                            <input type="text" id="new_problem_stmt" placeholder="Enter problem statement..." style="display:none; width: 100%; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+                            <textarea id="new_problem_stmt" placeholder="Enter problem statement (Markdown supported)..." style="display:none; width: 100%; max-width: 100%; height: 100px; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
                             <button id="edit_stmt_btn" class="view_team_btn">Edit Statement</button>
                             <button id="save_stmt_btn" class="view_team_btn" style="display:none; background: green;">Save</button>
                             <button id="cancel_stmt_btn" class="view_team_btn" style="display:none; background: #666;">Cancel</button>
@@ -226,6 +226,7 @@ function existingTeam(element) {
                     });
                     const result = await response.json();
                     if (result.success) {
+                        problemText.style.whiteSpace = "pre-wrap";
                         problemText.textContent = newStmt;
                         input.style.display = "none";
                         editBtn.style.display = "inline-block";
@@ -295,9 +296,9 @@ function findTeammates(element) {
         list.forEach(student => {
             const li = document.createElement("li");
             li.className = "teammate";
-            li.innerHTML = `
-                <span class="teammate-name">${student.name || 'Unknown'}</span>
-                <span class="teammate-email">${student.email}</span>
+            li.innerHTML = `    
+            <span class="teammate-name">${student.name || 'Unknown'}</span>
+            <span class="teammate-email">${student.email}</span>
             `;
             teammatesList.appendChild(li);
         });
