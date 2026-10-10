@@ -178,7 +178,7 @@ function existingTeam(element) {
                     <p><strong>Problem Statement:</strong> <span id="problem_text">${team.team_problem_stmt || "Not yet defined"}</span></p>
                     ${isLead ? `
                         <div class="edit-stmt-controls">
-                            <input type="text" id="new_problem_stmt" placeholder="Enter problem statement..." style="display:none; width: 100%; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px;">
+                            <textarea type="text" id="new_problem_stmt" placeholder="Enter problem statement..." style="display:none; width: 100%; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; max-width: 100%;"></textarea>
                             <button id="edit_stmt_btn" class="view_team_btn">Edit Statement</button>
                             <button id="save_stmt_btn" class="view_team_btn" style="display:none; background: green;">Save</button>
                             <button id="cancel_stmt_btn" class="view_team_btn" style="display:none; background: #666;">Cancel</button>
