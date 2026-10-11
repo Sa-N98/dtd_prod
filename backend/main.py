@@ -201,7 +201,63 @@ def create_team():
             "message": "Failed to create team."
         }), 500
  
- 
+@app.route("/api/add_member", methods=["POST"])
+def add_member():
+    data = request.get_json()
+    team_id = data.get("team_id")
+    member_email = data.get("member_email")
+    lead_email = data.get("lead_email")
+
+    if not team_id or not member_email or not lead_email:
+        return jsonify({
+            "success": False,
+            "message": "Team ID, member email, and lead email are required."
+        }), 400
+
+    try:
+        # Lock team and lead user to ensure consistency
+        team = Team.query.filter_by(id=team_id).with_for_update().first()
+        if not team:
+            return jsonify({"success": False, "message": "Team not found."}), 404
+
+        lead = User.query.filter_by(email=lead_email).with_for_update().first()
+        if not lead or team.lead_id != lead.id:
+            return jsonify({"success": False, "message": "Only the team lead can add members."}), 403
+
+        # Check current member count
+        members = TeamMember.query.filter_by(team_id=team.id).all()
+        if len(members) >= 4:
+            return jsonify({"success": False, "message": "Team already has maximum 4 members."}), 400
+
+        # Check if member already exists in this team
+        if any(m.user_id == User.query.filter_by(email=member_email).first().id if User.query.filter_by(email=member_email).first() else None for m in members):
+             return jsonify({"success": False, "message": "User is already a member of this team."}), 400
+
+        # Find the new member
+        new_member_user = User.query.filter_by(email=member_email).with_for_update().first()
+        if not new_member_user:
+            return jsonify({"success": False, "message": "User not found."}), 404
+
+        if not new_member_user.availability:
+            return jsonify({"success": False, "message": "User is already in another team."}), 409
+
+        # Add the member
+        new_membership = TeamMember(team_id=team.id, user_id=new_member_user.id)
+        new_member_user.availability = False
+
+        db.session.add(new_membership)
+        db.session.commit()
+
+        return jsonify({
+            "success": True,
+            "message": f"Successfully added {member_email} to the team."
+        }), 200
+
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error adding member: {e}")
+        return jsonify({"success": False, "message": "An error occurred while adding the member."}), 500
+     
 @app.route("/api/all_teams", methods=["GET"])
 def get_all_teams():
     teams = Team.query.all()

@@ -185,8 +185,14 @@ function existingTeam(element) {
                         </div>
                     ` : ''}
                 </div>
-                <ul style="margin-top: 1.5rem;">${membersList}</ul>
-                <button class="close_popup">Close</button>
+                <ul id="popup_members_list" style="margin-top: 1.5rem;">${membersList}</ul>
+                ${isLead ? `
+                    <div id="add_member_container" style="margin-top: 1rem; display: ${ (team.members || []).length < 4 ? 'block' : 'none' };">
+                        <input type="email" id="new_member_email" placeholder="Enter member email" style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+                        <button id="add_member_btn" class="view_team_btn" style="background: green; margin-left: 0.5rem;">Add Member</button>
+                    </div>
+                ` : ''}
+                <button class="close_popup" style="margin-top: 1rem;">Close</button>
             </div>
         `;
 
@@ -196,6 +202,7 @@ function existingTeam(element) {
             const cancelBtn = popup.querySelector("#cancel_stmt_btn");
             const input = popup.querySelector("#new_problem_stmt");
             const problemText = popup.querySelector("#problem_text");
+            const addMemberBtn = popup.querySelector("#add_member_btn");
 
             editBtn.addEventListener("click", () => {
                 input.style.display = "block";
@@ -241,6 +248,62 @@ function existingTeam(element) {
                     alert("An error occurred.");
                 }
             });
+
+            if (addMemberBtn) {
+                addMemberBtn.addEventListener("click", async () => {
+                    const emailInput = popup.querySelector("#new_member_email");
+                    const memberEmail = emailInput ? emailInput.value : "";
+
+                    if (!memberEmail) {
+                        alert("Please enter a valid email.");
+                        return;
+                    }
+
+                    try {
+                        const response = await fetch("https://dtd-prod.vercel.app/api/add_member", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                team_id: team.id,
+                                member_email: memberEmail,
+                                lead_email: user.email
+                            })
+                        });
+                        const result = await response.json();
+                        if (result.success) {
+                            alert(result.message);
+
+                            // Update the member list instantly in the popup
+                            const membersListUl = popup.querySelector("#popup_members_list");
+                            if (membersListUl) {
+                                const newLi = document.createElement("li");
+                                newLi.textContent = `${memberEmail} (Member)`;
+                                membersListUl.appendChild(newLi);
+                            }
+
+                            // Clear the input
+                            if (emailInput) emailInput.value = "";
+
+                            // Hide add member container if team is now full (4 members)
+                            const currentMembersCount = (team.members || []).length + 1;
+                            if (currentMembersCount >= 4) {
+                                const addContainer = popup.querySelector("#add_member_container");
+                                if (addContainer) addContainer.style.display = "none";
+                            }
+
+                            // Update the team object locally so subsequent actions know the new count
+                            team.members = team.members || [];
+                            team.members.push({ email: memberEmail, role: "Member" });
+
+                        } else {
+                            alert(result.message || "Failed to add member.");
+                        }
+                    } catch (error) {
+                        console.error("Error adding member:", error);
+                        alert("An error occurred while adding the member.");
+                    }
+                });
+            }
         }
 
         popup.querySelector(".close_popup").addEventListener("click", () => {
