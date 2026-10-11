@@ -24,41 +24,11 @@ import { getUser } from "./utils/auth.js";
 
 const app = document.querySelector("#app");
 
+const loginPage = await createLoginPage();
 
-// Create components in parallel to avoid network waterfalls
-const [
-    navbar,
-    timer,
-    homePage,
-    aboutPage,
-    settingsPage,
-    loginPage,
-    m0aPage,
-    m1aPage,
-    m1bPage,
-    m2aPage,
-    m2bPage,
-    m3aPage,
-    m3bPage
-] = await Promise.all([
-    createNavbar(),
-    createTimer(),
-    createHomePage(),
-    createAboutPage(),
-    createSettingsPage(),
-    createLoginPage(),
-    createM0APage(),
-    createM1APage(),
-    createM1BPage(),
-    createM2APage(),
-    createM2BPage(),
-    createM3APage(),
-    createM3BPage()
-]);
 
 
 // Place components
-
 
 const pageContainer = app.querySelector("page-container");
 
@@ -72,6 +42,36 @@ const user = getUser();
 
 if (user.user_id && user.role && user.email) {
     loginPageContainer.remove();
+
+    // Create components in parallel to avoid network waterfalls
+    const [
+        navbar,
+        timer,
+        homePage,
+        aboutPage,
+        settingsPage,
+        m0aPage,
+        m1aPage,
+        m1bPage,
+        m2aPage,
+        m2bPage,
+        m3aPage,
+        m3bPage
+    ] = await Promise.all([
+        createNavbar(),
+        createTimer(),
+        createHomePage(),
+        createAboutPage(),
+        createSettingsPage(),
+        createM0APage(),
+        createM1APage(),
+        createM1BPage(),
+        createM2APage(),
+        createM2BPage(),
+        createM3APage(),
+        createM3BPage()
+    ]);
+
     initPages();
     app.querySelector("nav-bar").appendChild(timer.element);
     app.querySelector("nav-bar").appendChild(navbar);
@@ -92,9 +92,39 @@ if (user.user_id && user.role && user.email) {
     if (login_data.success) {
         loginPageContainer.remove();
 
+        // Create components in parallel to avoid network waterfalls
+        const [
+        navbar,
+            timer,
+            homePage,
+            aboutPage,
+            settingsPage,
+            m0aPage,
+            m1aPage,
+            m1bPage,
+            m2aPage,
+            m2bPage,
+            m3aPage,
+            m3bPage
+        ] = await Promise.all([
+            createNavbar(),
+            createTimer(),
+            createHomePage(),
+            createAboutPage(),
+            createSettingsPage(),
+            createM0APage(),
+            createM1APage(),
+            createM1BPage(),
+            createM2APage(),
+            createM2BPage(),
+            createM3APage(),
+            createM3BPage()
+        ]);
+
         saveUser(login_data);
         
         initPages();
+        app.querySelector("nav-bar").appendChild(timer.element);
         app.querySelector("nav-bar").appendChild(navbar);
         pageContainer.appendChild(homePage);
         pageContainer.appendChild(aboutPage);
