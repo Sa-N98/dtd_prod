@@ -1,8 +1,10 @@
 .milestone-page {
+    font-family: var(--ui-font);
     padding: 2rem;
     max-width: 860px;
     margin: 0 auto;
 }
+
 
 /* --- Header Styling (Copied from milestone-0-intro.html) --- */
 .top {
@@ -149,6 +151,7 @@
 
 /* --- Team Popup Styling --- */
 .team_popup_overlay {
+    font-family: var(--ui-font);
     position: fixed;
     top: 0;
     left: 0;
