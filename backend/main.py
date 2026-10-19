@@ -274,7 +274,8 @@ def get_all_teams():
             "team_no": team.team_no,
             "lead_id": team.lead_id,
             "members": members,
-            "team_problem_stmt": team.problem_stmt
+            "team_problem_stmt": team.problem_stmt,
+            "review": team.professors_review
         }
         team_list.append(team_data)
     return jsonify(team_list), 200
@@ -419,4 +420,3 @@ def exit_team(user_email):
 if __name__ == "__main__":
     # Dev only. In production run: gunicorn -w 4 main:app
     app.run(debug=True, port=5001)
- 

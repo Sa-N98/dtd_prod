@@ -4,7 +4,6 @@ export async function createM0APage() {
     const response = await fetch("./src/pages/milestones/m0a/m0a.html");
     const html = await response.text();
     const container = document.createElement("div");
-    const user = getUser();
     container.innerHTML = html;
 
     const element = container.firstElementChild;
@@ -171,30 +170,76 @@ function existingTeam(element) {
 
         const isLead = user && team.members && team.members.some(m => m.email === user.email && m.role === "Lead");
 
+        // Escape text so review content can't inject HTML
+        const escapeHTML = (str) =>
+            String(str).replace(/[&<>"']/g, c => ({
+                '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+            }[c]));
+
+        const hasReview = team.review && team.review.trim().length > 0;
+
         popup.innerHTML = `
             <div class="team_popup_content" style="background: var(--ui-surface, #fff); padding: 2rem; border-radius: var(--ui-radius-lg, 10px); max-width: 800px; width: 90%; box-shadow: var(--ui-shadow-lg, 0 10px 15px -3px rgba(0,0,0,0.1)); position: relative; animation: popupAppear 0.3s ease-out; overflow: scroll; max-height: 70vh;">
                 <h3>Team ${team.team_no} Details</h3>
-                <div class="problem-stmt-container">
-                    <p><strong>Problem Statement:</strong> <span id="problem_text" style="white-space: pre-wrap;">${team.team_problem_stmt || "Not yet defined"}</span></p>
+
+                <!-- Popup tabs -->
+                <div class="popup_tabs">
+                    <button class="popup_tab active" data-pane="pane_details">Details</button>
+                    <button class="popup_tab" data-pane="pane_review">
+                        Professor's Review
+                        ${hasReview ? '<span class="review_dot"></span>' : ''}
+                    </button>
+                </div>
+
+                <!-- DETAILS PANE -->
+                <div id="pane_details" class="popup_pane active">
+                    <div class="problem-stmt-container">
+                        <p><strong>Problem Statement:</strong> <span id="problem_text" style="white-space: pre-wrap;">${team.team_problem_stmt || "Not yet defined"}</span></p>
+                        ${isLead ? `
+                            <div class="edit-stmt-controls">
+                                <textarea id="new_problem_stmt" placeholder="Enter problem statement (Markdown supported)..." style="display:none; width: 100%; max-width: 100%; height: 100px; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
+                                <button id="edit_stmt_btn" class="view_team_btn">Edit Statement</button>
+                                <button id="save_stmt_btn" class="view_team_btn" style="display:none; background: green;">Save</button>
+                                <button id="cancel_stmt_btn" class="view_team_btn" style="display:none; background: #666;">Cancel</button>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <ul id="popup_members_list" style="margin-top: 1.5rem;">${membersList}</ul>
                     ${isLead ? `
-                        <div class="edit-stmt-controls">
-                            <textarea id="new_problem_stmt" placeholder="Enter problem statement (Markdown supported)..." style="display:none; width: 100%; max-width: 100%; height: 100px; margin-bottom: 1rem; padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; resize: vertical;"></textarea>
-                            <button id="edit_stmt_btn" class="view_team_btn">Edit Statement</button>
-                            <button id="save_stmt_btn" class="view_team_btn" style="display:none; background: green;">Save</button>
-                            <button id="cancel_stmt_btn" class="view_team_btn" style="display:none; background: #666;">Cancel</button>
+                        <div id="add_member_container" style="margin-top: 1rem; display: ${ (team.members || []).length < 4 ? 'block' : 'none' };">
+                            <input type="email" id="new_member_email" placeholder="Enter member email" style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
+                            <button id="add_member_btn" class="view_team_btn" style="background: green; margin-left: 0.5rem;">Add Member</button>
                         </div>
                     ` : ''}
                 </div>
-                <ul id="popup_members_list" style="margin-top: 1.5rem;">${membersList}</ul>
-                ${isLead ? `
-                    <div id="add_member_container" style="margin-top: 1rem; display: ${ (team.members || []).length < 4 ? 'block' : 'none' };">
-                        <input type="email" id="new_member_email" placeholder="Enter member email" style="padding: 0.5rem; border: 1px solid #ccc; border-radius: 4px; width: 200px;">
-                        <button id="add_member_btn" class="view_team_btn" style="background: green; margin-left: 0.5rem;">Add Member</button>
-                    </div>
-                ` : ''}
+
+                <!-- REVIEW PANE -->
+                <div id="pane_review" class="popup_pane">
+                    ${hasReview ? `
+                        <div class="review_box">
+                            <div class="review_label">Professor's Review</div>
+                            <div class="review_text">${escapeHTML(team.review)}</div>
+                        </div>
+                    ` : `
+                        <div class="review_empty">
+                            <p>No review has been added for this team yet.</p>
+                        </div>
+                    `}
+                </div>
+
                 <button class="close_popup" style="margin-top: 1rem;">Close</button>
             </div>
         `;
+
+        // Tab switching (scoped to this popup)
+        popup.querySelectorAll('.popup_tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                popup.querySelectorAll('.popup_tab').forEach(t => t.classList.remove('active'));
+                popup.querySelectorAll('.popup_pane').forEach(p => p.classList.remove('active'));
+                tab.classList.add('active');
+                popup.querySelector('#' + tab.dataset.pane).classList.add('active');
+            });
+        });
 
         if (isLead) {
             const editBtn = popup.querySelector("#edit_stmt_btn");

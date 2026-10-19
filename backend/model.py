@@ -76,6 +76,7 @@ class Team(db.Model):
     problem_stmt = db.Column(
         db.Text
     )
+    
 
     # User who created/leads the team
     lead_id = db.Column(
@@ -84,6 +85,10 @@ class Team(db.Model):
         nullable=False,
         unique=True
     )
+
+    professors_review = db.Column(
+            db.Text
+        )
 
     lead = db.relationship(
         "User",

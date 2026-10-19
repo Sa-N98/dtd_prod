@@ -226,6 +226,88 @@
     background: var(--ui-border, #e8ecf1);
 }
 
+/* --- Popup tabs (Details / Professor's Review) --- */
+.popup_tabs {
+    display: flex;
+    gap: 0.25rem;
+    border-bottom: 2px solid var(--ui-border, #e8ecf1);
+    margin-bottom: 1.25rem;
+}
+
+.popup_tab {
+    position: relative;
+    padding: 0.6rem 1rem;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -2px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--ui-text-muted, #8590a2);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.popup_tab:hover {
+    color: var(--ui-text, #2e1a0a);
+}
+
+.popup_tab.active {
+    color: var(--ui-primary, #771e18);
+    border-bottom-color: var(--ui-primary, #771e18);
+    font-weight: 600;
+}
+
+/* Small dot showing a review exists */
+.review_dot {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    margin-left: 0.4rem;
+    border-radius: 50%;
+    background: var(--ui-primary, #771e18);
+    vertical-align: middle;
+}
+
+.popup_pane {
+    display: none;
+}
+
+.popup_pane.active {
+    display: block;
+}
+
+/* Review content */
+.review_box {
+    background: var(--ui-bg-subtle, #f7f8fb);
+    border: 1px solid var(--ui-border, #e8ecf1);
+    border-radius: var(--ui-radius, 6px);
+    padding: 1rem 1.25rem;
+}
+
+.review_label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ui-text-muted, #8590a2);
+    margin-bottom: 0.5rem;
+}
+
+.review_text {
+    white-space: pre-wrap;
+    line-height: 1.6;
+    color: var(--ui-text, #2e1a0a);
+    overflow-wrap: break-word;
+}
+
+.review_empty {
+    text-align: center;
+    padding: 2rem 1rem;
+    color: var(--ui-text-muted, #8590a2);
+    font-style: italic;
+}
+
 /* --- Tab styling for the <h5> buttons --- */
 .ui-tab-list.pills {
     display: flex;
@@ -430,5 +512,3 @@
 .teammate-list li:hover {
     border-color: var(--ui-primary, #771e18);
 }
-
-
