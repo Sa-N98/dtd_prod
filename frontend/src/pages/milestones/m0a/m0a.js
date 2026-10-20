@@ -1,4 +1,5 @@
-import {getUser} from "../../../utils/auth.js";   
+import {getUser} from "../../../utils/auth.js";
+import { API_DOMAIN } from "../../../Configs/api_domain.js";
 
 export async function createM0APage() {
     const response = await fetch("./src/pages/milestones/m0a/m0a.html");
@@ -77,7 +78,7 @@ function createTeam(element) {
 
         try {
             const response = await fetch(
-                "https://dtd-prod.vercel.app/api/teams",
+                `${API_DOMAIN}/api/teams`,
                 {
                     method: "POST",
                     headers: {
@@ -114,7 +115,7 @@ function existingTeam(element) {
 
     async function fetchTeams() {
         try {
-            const response = await fetch("https://dtd-prod.vercel.app/api/all_teams");
+            const response = await fetch(`${API_DOMAIN}/api/all_teams`);
             const teams = await response.json();
             const user = getUser();
 
@@ -268,7 +269,7 @@ function existingTeam(element) {
             saveBtn.addEventListener("click", async () => {
                 const newStmt = input.value;
                 try {
-                    const response = await fetch("https://dtd-prod.vercel.app/api/update_problem_stmt", {
+                    const response = await fetch(`${API_DOMAIN}/api/update_problem_stmt`, {
                         method: "POST",
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify({
@@ -305,7 +306,7 @@ function existingTeam(element) {
                     }
 
                     try {
-                        const response = await fetch("https://dtd-prod.vercel.app/api/add_member", {
+                        const response = await fetch(`${API_DOMAIN}/api/add_member`, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({
@@ -380,7 +381,7 @@ function findTeammates(element) {
 
     async function fetchTeammates() {
         try {
-            const response = await fetch("https://dtd-prod.vercel.app/api/find_teammates");
+            const response = await fetch(`${API_DOMAIN}/api/find_teammates`);
             allTeammates = await response.json();
 
             renderTeammates(allTeammates);
@@ -428,7 +429,7 @@ function findTeammates(element) {
    
 async function exitTeam(userEmail, callback) {
     try {
-        const response = await fetch(`https://dtd-prod.vercel.app/api/exit_team/${userEmail}`, {
+        const response = await fetch(`${API_DOMAIN}/api/exit_team/${userEmail}`, {
             method: "POST",
         });
         const result = await response.json();

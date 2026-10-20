@@ -1,3 +1,5 @@
+import { API_DOMAIN } from "../../Configs/api_domain.js";
+
 export async function createLoginPage() {
     // Add Style 
     const css = document.createElement("link");
@@ -31,7 +33,7 @@ export function loginFunctionality(container) {
             const password = form.password.value;
 
             const response = await fetch(
-                "https://dtd-prod.vercel.app/api/login",
+                `${API_DOMAIN}/api/login`,
                 {
                     method: "POST",
                     headers: {
