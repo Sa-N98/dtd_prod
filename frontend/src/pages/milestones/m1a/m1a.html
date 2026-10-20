@@ -42,7 +42,9 @@
                             <div><b>Project Proposal</b><span>State the project concept, goal, and how your team will
                                     apply Agile methodology. Include a list of existing solutions with links.</span>
                             </div>
-                        </label><button class="btn" data-open="proposal">Open in tool</button></div>
+                        </label><button class="btn" data-open="proposal">Open in tool</button>
+                    </div>
+
                     <div class="req"><label><input type="checkbox" data-todo="scope">
                             <div><b>Project Scope</b><span>Define the broad direction of your project. Clearly identify
                                     what is in-scope and what is out-of-scope at this stage.</span></div>
@@ -67,7 +69,99 @@
         <!-- REPORT TOOL -->
         <div id="report_tool_m1a" style="display:none;">
 
-            hdsbvkndsljnlsadn
+            <div class="tool-bar">
+                <p>Use this tool to genarate a starting template for yout report that yopu can later customize by copying to any 
+                    document editor tool like pages or ms word. Final submition should be in a pdf format. </p>
+                <button class="btn btn-primary" id="btn-preview" type="button">Preview</button>
+            </div>
+
+            <!-- Preview modal -->
+            <div class="preview-overlay" id="preview-overlay" hidden>
+                <div class="preview-dialog" role="dialog" aria-modal="true" aria-labelledby="preview-title">
+                    <div class="preview-head">
+                        <h3 id="preview-title">Report preview</h3>
+                        <div class="preview-actions">
+                            <button class="btn btn-primary" id="btn-copy-template" type="button">Copy as template</button>
+                            <button class="btn" id="btn-close-preview" type="button">Close</button>
+                        </div>
+                    </div>
+                    <div class="preview-body" id="preview-body"></div>
+                </div>
+            </div>
+
+            <!-- 1. Proposal -->
+            <div class="panel" data-section="proposal">
+                <div class="ph"><div><h3>1. Project Proposal</h3>
+                    <p>Concept, goal, Agile approach and existing solutions.</p></div></div>
+                <div class="pb form">
+                    <label class="field"><span>Project title</span>
+                        <input type="text" data-field="title" placeholder="e.g. CampusConnect"></label>
+                    <label class="field"><span>Project concept</span>
+                        <textarea data-field="concept" rows="4" placeholder="What are you building, and for whom?"></textarea></label>
+                    <label class="field"><span>Goal</span>
+                        <textarea data-field="goal" rows="3" placeholder="What problem does it solve? What does success look like?"></textarea></label>
+                    <label class="field"><span>How will your team apply Agile?</span>
+                        <textarea data-field="agile" rows="4" placeholder="Sprints, stand-ups, backlog, reviews, retrospectives, tools..."></textarea></label>
+
+                    <div class="field">
+                        <span>Existing solutions</span>
+                        <div class="rows" data-list="solutions"></div>
+                        <button class="btn add" type="button" data-add="solutions">+ Add solution</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Scope -->
+            <div class="panel" data-section="scope">
+                <div class="ph"><div><h3>2. Project Scope</h3>
+                    <p>Broad direction, with clear in-scope and out-of-scope items.</p></div></div>
+                <div class="pb form">
+                    <label class="field"><span>Scope overview</span>
+                        <textarea data-field="scope_overview" rows="3" placeholder="The broad direction of the project at this stage."></textarea></label>
+                    <div class="two-col">
+                        <div class="field">
+                            <span>In scope</span>
+                            <div class="rows" data-list="in_scope"></div>
+                            <button class="btn add" type="button" data-add="in_scope">+ Add item</button>
+                        </div>
+                        <div class="field">
+                            <span>Out of scope</span>
+                            <div class="rows" data-list="out_scope"></div>
+                            <button class="btn add" type="button" data-add="out_scope">+ Add item</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. WBS -->
+            <div class="panel" data-section="wbs">
+                <div class="ph"><div><h3>3. Work Breakdown Structure</h3>
+                    <p>Roles, sprint timeline, capacity and contingency.</p></div></div>
+                <div class="pb form">
+
+                    <div class="field" id="wbs-roles">
+                        <span>Roles &amp; responsibilities</span>
+                        <div class="rows" data-list="roles"></div>
+                        <button class="btn add" type="button" data-add="roles">+ Add team member</button>
+                    </div>
+
+                    <div class="field" id="wbs-sprint">
+                        <span>Sprint timeline</span>
+                        <div class="rows" data-list="sprints"></div>
+                    </div>
+
+                    <div class="field" id="wbs-cap">
+                        <span>Capacity &amp; workload</span>
+                        <div class="rows" data-list="capacity"></div>
+                        <button class="btn add" type="button" data-add="capacity">+ Add team member</button>
+                    </div>
+
+                    <label class="field"><span>Contingency plan</span>
+                        <textarea data-field="contingency" rows="4" placeholder="What happens if a member is inactive or unavailable? How will work be redistributed?"></textarea></label>
+                </div>
+            </div>
+
+            <p class="tool-note">Tip: tick the matching items on the To Do tab once each section is complete.</p>
         </div>
 
     </section>
