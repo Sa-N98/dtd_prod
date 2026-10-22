@@ -1,8 +1,425 @@
 .milestone-page {
+    --m-primary: var(--ui-primary, #771e18);
+    --m-primary-light: var(--ui-primary-light, #fdf2f2);
+    --m-border: var(--ui-border, #e8ecf1);
+    --m-muted: var(--ui-text-muted, #8590a2);
+    --m-text: var(--ui-text, #2e1a0a);
+    --m-bg: var(--ui-bg-subtle, #f7f8fb);
+    --m-surface: var(--ui-surface, #fff);
+    --m-ok: #166534;
+
+    font-family: var(--ui-font);
     padding: 2rem;
-    max-width: 800px;
+    max-width: 860px;
     margin: 0 auto;
 }
+
+/* --- Header Styling (same as milestone 0) --- */
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.stats {
+    display: flex;
+    gap: .6rem;
+    flex-wrap: wrap;
+    max-width: 100%;
+}
+
+.stat {
+    flex: 0 1 auto;
+    min-width: 5.5rem;
+    text-align: center;
+    padding: .6rem .9rem;
+    background: var(--ui-surface, #fff);
+    border: 1px solid var(--ui-border, #e8ecf1);
+    border-radius: var(--ui-radius-lg, 10px);
+    box-shadow: var(--ui-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+}
+
+.stat small {
+    display: block;
+    font-size: .68rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: var(--ui-text-muted, #8590a2);
+}
+
+.stat b {
+    display: block;
+    font-size: 1.5rem;
+    line-height: 1.2;
+    color: var(--ui-primary, #771e18);
+}
+
+.stat.danger b {
+    color: var(--ui-danger, #b82020);
+}
+
+.stat span {
+    display: block;
+    font-size: .65rem;
+    color: var(--ui-text-muted, #8590a2);
+}
+
 .milestone-page h1 {
-    color: var(--primary-color, #333);
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    line-height: 1.05;
+    letter-spacing: -.03em;
+    font-weight: 600;
+    margin: 1.25rem 0 1rem;
+    color: var(--ui-text, #2e1a0a);
+}
+
+.milestone-page h1 em {
+    font-style: normal;
+    color: var(--ui-primary, #771e18);
+}
+
+.lead {
+    font-size: 1.1rem;
+    font-weight: 500;
+    margin: 0 0 .75rem;
+    color: var(--ui-text, #2e1a0a);
+}
+
+.desc p {
+    margin: .4rem 0;
+    color: var(--ui-text-muted, #8590a2);
+    max-width: 60ch;
+    line-height: 1.6;
+}
+
+/* --- Tab styling for the <h5> buttons --- */
+.ui-tab-list.pills {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+    margin-top: 3rem;
+    padding: 0;
+    list-style: none;
+}
+
+.ui-tab {
+    padding: 0.6rem 1.2rem !important;
+    margin: 0 !important;
+    border-radius: var(--ui-radius, 6px) !important;
+    border: 1px solid var(--ui-border, #e8ecf1) !important;
+    background: var(--ui-surface, #fff) !important;
+    color: var(--ui-text-muted, #8590a2) !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    display: inline-block !important;
+}
+
+.ui-tab:hover {
+    background: var(--ui-bg-subtle, #f7f8fb) !important;
+    color: var(--ui-text, #2e1a0a) !important;
+}
+
+.ui-tab.active {
+    background: var(--ui-primary, #771e18) !important;
+    color: #fff !important;
+    border-color: var(--ui-primary, #771e18) !important;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* --- Panel styling (matches .ui-panel) --- */
+.milestone-page .panel {
+    background: var(--m-surface);
+    border: 1px solid var(--m-border);
+    border-radius: var(--ui-radius-lg, 10px);
+    box-shadow: var(--ui-shadow-sm, 0 1px 2px rgba(0,0,0,0.05));
+    margin-bottom: 1.25rem;
+    overflow: hidden;
+}
+
+.milestone-page .flow-panel {
+    margin-top: 2rem;
+}
+
+.milestone-page .ph {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem 1.5rem;
+    border-bottom: 1px solid var(--m-border);
+    background: var(--ui-bg-subtle, #fcfcfc);
+}
+
+.milestone-page .ph h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--m-text);
+}
+
+.milestone-page .ph p {
+    margin: 0.25rem 0 0;
+    font-size: 0.9rem;
+    color: var(--m-muted);
+}
+
+.milestone-page .pb {
+    padding: 1.5rem;
+}
+
+/* --- Tag (matches .ui-tag.primary / .success) --- */
+.milestone-page .tag {
+    white-space: nowrap;
+    padding: 0.25rem 0.6rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-radius: 100px;
+    background: var(--m-primary-light);
+    color: var(--m-primary);
+    border: 1px solid var(--m-primary);
+}
+
+.milestone-page .tag.complete {
+    background: #eefdf5;
+    color: var(--m-ok);
+    border-color: #bbf7d0;
+}
+
+/* --- Illustration --- */
+.milestone-page .flow-svg {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.milestone-page .rules {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 1.25rem;
+}
+
+/* --- Small pills (marks, scope, rules) --- */
+.milestone-page .m1b-pill {
+    white-space: nowrap;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 100px;
+    background: var(--m-primary-light);
+    color: var(--m-primary);
+    border: 1px solid var(--m-border);
+}
+
+.milestone-page .m1b-pill.team {
+    background: #eefdf5;
+    color: var(--m-ok);
+    border-color: #bbf7d0;
+}
+
+/* --- To do --- */
+.milestone-page .todo-summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.milestone-page .todo-summary p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--m-muted);
+}
+
+.milestone-page .req {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--m-border);
+}
+
+.milestone-page .req:first-child {
+    padding-top: 0;
+}
+
+.milestone-page .req:last-child {
+    border-bottom: 0;
+    padding-bottom: 0;
+}
+
+.milestone-page .req label {
+    display: flex;
+    gap: 0.75rem;
+    align-items: flex-start;
+    cursor: pointer;
+    flex: 1;
+}
+
+.milestone-page .req input[type="checkbox"] {
+    margin-top: 0.3rem;
+    width: 1.1rem;
+    height: 1.1rem;
+    accent-color: var(--m-primary);
+}
+
+.milestone-page .req b {
+    display: block;
+    color: var(--m-text);
+}
+
+.milestone-page .req span {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--m-muted);
+    margin-top: 0.15rem;
+}
+
+.milestone-page .req.done b {
+    text-decoration: line-through;
+    color: var(--m-muted);
+}
+
+.milestone-page .req-meta {
+    display: flex;
+    gap: 0.4rem;
+    flex: none;
+}
+
+.milestone-page .req-meta .m1b-pill {
+    margin: 0;
+    display: inline-block;
+}
+
+/* --- To do sections (Individual / Team) --- */
+.milestone-page .todo-section + .todo-section {
+    margin-top: 1.75rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed var(--m-border);
+}
+
+.milestone-page .todo-section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.milestone-page .todo-section-head h4 {
+    margin: 0;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--m-primary);
+}
+
+.milestone-page .todo-section.team .todo-section-head h4 {
+    color: var(--m-ok);
+}
+
+.milestone-page .todo-section-note {
+    margin: 0 0 0.9rem;
+    font-size: 0.85rem;
+    color: var(--m-muted);
+}
+
+/* --- Resources --- */
+.milestone-page .res-group + .res-group {
+    margin-top: 1.5rem;
+}
+
+.milestone-page .res-group h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--m-muted);
+}
+
+.milestone-page .res-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.milestone-page .res-link {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.85rem 1rem;
+    margin-bottom: 0.6rem;
+    text-decoration: none;
+    background: var(--m-surface);
+    border: 1px solid var(--m-border);
+    border-radius: var(--ui-radius, 6px);
+    transition: border-color 0.2s ease;
+}
+
+.milestone-page .res-link:hover {
+    border-color: var(--m-primary);
+}
+
+.milestone-page .res-title {
+    display: block;
+    font-weight: 600;
+    color: var(--m-text);
+}
+
+.milestone-page .res-note {
+    display: block;
+    margin-top: 0.15rem;
+    font-size: 0.85rem;
+    color: var(--m-muted);
+}
+
+.milestone-page .res-arrow {
+    flex: none;
+    color: var(--m-primary);
+    font-weight: 600;
+}
+
+.milestone-page .res-empty {
+    margin: 0;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    font-style: italic;
+    color: var(--m-muted);
+}
+
+/* --- Responsive --- */
+@media (max-width: 640px) {
+    .milestone-page {
+        padding: 1rem;
+    }
+
+    .milestone-page .req {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .milestone-page .req-meta {
+        padding-left: 1.85rem;
+    }
+
+    .milestone-page .todo-summary {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+.milestone-page .todo-section-note + .req {
+    padding-top: 0;
 }

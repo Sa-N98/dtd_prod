@@ -134,3 +134,6 @@ page-container {
   overflow-y: auto;
   background-color: var(--ui-bg);
 }
+
+.Imp_point {color: var(--m-primary);
+  font-weight: bolder;}
