@@ -511,6 +511,35 @@ line-height: 1.6;
     color: var(--m-danger);
 }
 
+.submit_btn,
+.submit_btn:visited {
+    font: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 0.8rem 1rem;
+    border-radius: var(--ui-radius-sm, 4px);
+    border: 1px solid var(--m-primary);
+    background: var(--m-primary);
+    color: #fff !important;
+    cursor: pointer;
+    white-space: nowrap;
+    text-decoration: none !important;
+    display: inline-block;
+    text-align: center;
+    transition: opacity 0.2s ease;
+}
+
+.submit_btn:hover {
+    opacity: 0.9;
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
+.submit_btn:active {
+    color: #fff !important;
+    text-decoration: none !important;
+}
+
 /* --- Responsive --- */
 @media (max-width: 640px) {
     .milestone-page {
