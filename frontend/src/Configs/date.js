@@ -6,8 +6,8 @@ export const DATE_CONFIG = {
     "2026-10-11": "Milestone-0",
     "2026-10-28": "Milestone-1a",
     "2026-10-30": "Milestone-1b",
-    "2026-11-17": "Milestone-2b",
-    "2026-11-19": "Milestone-2a",
+    "2026-11-17": "Milestone-2a",
+    "2026-11-19": "Milestone-2b",
     "2026-12-15": "Milestone-3a",
     "2026-12-17": "Milestone-3b"
   }
